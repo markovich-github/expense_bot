@@ -12,10 +12,11 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 3;
   const [categories, setCategories] = useState(allCategories);
-  const [currentCategory, setCurrentCategory] = useState([]);
+  const [currentCategory, setCurrentCategory] = useState();
   
 
-  const paginateExpenses = paginate(allExpenses, currentPage, pageSize)
+  const filteredExpenses = currentCategory && currentCategory != 'All Categories' ? allExpenses.filter(e => e.category == currentCategory) : allExpenses
+  const paginateExpenses = paginate(filteredExpenses, currentPage, pageSize)
   
   const expense = {
     _id: Date.now().toString(),
@@ -30,7 +31,6 @@ const App = () => {
     const updateExpense = expenses.find(e=>e._id==_id)
     setCurrentExpense(updateExpense);
     setUpdating(true)
-    console.log("hit1");
   }
 
   const handleDelete = (_id) => {
@@ -52,13 +52,16 @@ const App = () => {
   const handlePagination = (page) =>{
     setCurrentPage(page);
   }
-
+  
   const filterCategory = (category) => {
     setCurrentCategory(category);
+    setCurrentPage(1);
+    console.log(currentCategory);
   }
 
   useEffect(()=>{
-    setCategories([{_id:'0', name:'All Genre'},...categories]);
+    setCategories([{_id:'0', name:'All Categories'},...categories]);
+    
   },[])
 
   
