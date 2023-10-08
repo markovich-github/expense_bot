@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const ExpenseTable = ({expenses, onUpdate, onDelete}) => {
     
-    return <div className='my-4'>
+    return <div>
         <table className="table table-bordered">
             <thead>
                 <tr>
