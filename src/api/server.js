@@ -19,17 +19,28 @@ const ExpenseSchema = new mongoose.Schema({
 
 const Expense = mongoose.model('expenses', ExpenseSchema);
 
+const CategorySchema = new mongoose.Schema({
+    name: String
+})    
 
-app.get('/', async (req,res)=>{
+const Category = mongoose.model('categories', CategorySchema);
+
+
+app.get('/expenses', async (req,res)=>{
     const expenses = await Expense.find();
     res.send(expenses);
 })
 
-app.post('/', async (req,res)=>{
+app.get('/categories', async (req,res)=>{
+    const categories = await Category.find();
+    res.send(categories);
+})
+
+app.post('/expenses', async (req,res)=>{
     const expense = new Expense({
-        description:'expense2',
-        amount:200,
-        category:'misc'
+        description:req.body.description,
+        amount:req.body.amount,
+        category:req.body.category
     })
 
     try{
@@ -41,20 +52,31 @@ app.post('/', async (req,res)=>{
     }
 })
 
-app.put('/:id', async(req,res)=>{
+app.post('/categories', async (req,res)=>{
+    const category = new Category({
+        name:req.body.name,
+    })
+    
+        const result = await category.save();
+        res.send(result);
+})
+
+app.put('/expenses/:id', async(req,res)=>{
 
     const expense = await Expense.findById(req.params.id);
     if(!expense) return res.send('not found');
 
     expense.set({
-        description:req.body.description
+        description:req.body.description,
+        amount:req.body.amount,
+        category:req.body.category
     })
 
     const save = await expense.save();
     res.send(save);
 })
 
-app.delete('/:id', async(req,res)=>{
+app.delete('/expenses/:id', async(req,res)=>{
 
     const expense = await Expense.findByIdAndRemove(req.params.id)
     if(!expense) return res.status(404).send("expense not found")
