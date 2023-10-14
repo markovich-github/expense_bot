@@ -1,14 +1,24 @@
 import React, { useState } from 'react'
+import ArrowIcon from './common/arrorIcon';
 
-const ExpenseTable = ({expenses, onUpdate, onDelete}) => {
+
+const ExpenseTable = ({expenses, onUpdate, onDelete, onSort, sortColumn}) => {
+
+    const renderArrow = (currentColumn) => {
+        if(currentColumn==sortColumn.path)
+          return sortColumn.order=='asc'?<ArrowIcon order='asc'/>:<ArrowIcon order='desc'/>
+        else
+          return null;  
+      }
     
-    return <div>
+    
+    return <div className='my-4'>
         <table className="table table-bordered">
             <thead>
                 <tr>
                     <th className="col">#</th>
                     <th className="col-6">Description</th>
-                    <th className="col">Amount</th>
+                    <th className="col" onClick={()=>onSort('amount')}>Amount<span className='mx-2'>{renderArrow('amount')}</span></th>
                     <th className="col">Category</th>
                     <th className="col"></th>
                     <th className="col"></th>
