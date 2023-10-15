@@ -84,7 +84,7 @@ const ExpenseForm = ({ categories, currentExpense, setCurrentExpense, onSubmit, 
           <button
             type="submit"
             className="btn btn-primary"
-            onClick={handleSubmit} // Use the custom handleSubmit function
+            onClick={handleSubmit} 
           >
             Submit
           </button>
