@@ -2,7 +2,7 @@ import React from 'react'
 
 
 const ListGroup = ({items, onItemSelect, id, value, selectedItem}) => {
-  items = [{_id:0, name:'All Genre'}, ...items];
+  items = [{_id:0, name:'All Categories'}, ...items];
   
   return <div>
     <ul className="list-group">

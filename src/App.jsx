@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import ExpenseTable from './components/expenseTable'
 import ExpenseForm from './components/expenseForm'
-// import { addExpense, allExpenses, getExpenses, getExpenseById, updateExpense } from './db/expenses'
-// import { allCategories } from './db/categories'
 import Pagination from './components/pagination'
 import paginate from './utils/paginate'
 import ListGroup from './components/common/listGroup'
@@ -108,6 +106,7 @@ const App = () => {
     
   },[])
 
+  console.log(expenses);
   
   return <div className='col-10 mx-auto mt-5'>
     <h1>Expense Bot</h1>
