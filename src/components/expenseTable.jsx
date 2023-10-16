@@ -28,7 +28,7 @@ const ExpenseTable = ({expenses, onUpdate, onDelete, onSort, sortColumn}) => {
                 {expenses.map((e, index) => <tr key={e._id}>
                     <th scope="row">{index + 1}</th>
                     <td>{e.description}</td>
-                    <td>${e.amount}</td>
+                    <td>₹{e.amount}</td>
                     <td>{e.category}</td>
                     <td><button className='btn btn-primary' onClick={()=>onUpdate(e._id)}>Update</button></td>
                     <td><button className='btn btn-danger' onClick={()=>onDelete(e._id)}>Delete</button></td>
@@ -36,7 +36,7 @@ const ExpenseTable = ({expenses, onUpdate, onDelete, onSort, sortColumn}) => {
                 <tr>
                     <td></td>
                     <th>Total</th>
-                    <td>${expenses.reduce((acc,current)=>acc+current.amount,0)}</td>
+                    <td>₹{expenses.reduce((acc,current)=>acc+current.amount,0)}</td>
                     <td></td>
                     <td></td>
                     <td></td>

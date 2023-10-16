@@ -124,7 +124,7 @@ const App = () => {
       <SearchBox placeholder='Search...' value={currentSearch} onChange={handleSearch}/>
       <ExpenseTable expenses={paginateExpenses} onUpdate={handleUpdate} onDelete={handleDelete} onSort={handleSort} sortColumn={sortColumn}/>
 
-      <Pagination totalItems={expenses.length} pageSize={pageSize} currentPage={currentPage} onPagination={handlePagination}/>
+      <Pagination totalItems={filteredExpenses.length} pageSize={pageSize} currentPage={currentPage} onPagination={handlePagination}/>
       </div>
 
     </div>
