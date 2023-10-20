@@ -18,12 +18,7 @@ const App = () => {
   const [currentSearch, setCurrentSearch] = useState('')
 
   let filteredExpenses;
-  if(currentSearch)
-    filteredExpenses = expenses.filter( e => e.description.toLowerCase().startsWith(currentSearch.toLowerCase()))
-  else
-    filteredExpenses = currentCategory && currentCategory != 'All Categories' ? expenses.filter(e => e.category == currentCategory) : expenses;
-  const [sortColumn, setSortColumn] = useState({ path: 'amount', order: 'asc' })
-  const sortedExpenses = _.orderBy(filteredExpenses, [sortColumn.path], [sortColumn.order])
+  
   const paginateExpenses = paginate(sortedExpenses, currentPage, pageSize)
   
   const expense = {
@@ -77,20 +72,6 @@ const App = () => {
     setCurrentPage(1);
   }
 
-  const handleSort = (path) => {
-    let newSort = { ...sortColumn }
-    if (newSort.path == path)
-      newSort.order = (newSort.order === 'asc') ? 'desc' : 'asc';
-    else
-      newSort = { path: path, order: 'asc' }
-    setSortColumn(newSort)
-  }
-
-  const handleSearch = (searchQuery) => {
-    setCurrentSearch(searchQuery)
-    setCurrentCategory(null)
-    setCurrentPage(1);
-  }
 
 
 
